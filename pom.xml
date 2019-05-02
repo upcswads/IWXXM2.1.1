@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>aero.iwxxm</groupId>
+    <artifactId>iwxxm</artifactId>
+    <version>2.1.1</version>
+    <name>XSD - ${project.artifactId}</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                  <archive>
+                    <manifest>
+                      <mainClass></mainClass>
+                    </manifest>
+                  </archive>
+                  <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
+                </configuration>
+          </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                	<xjbSources>
+                        <xjbSource>binding/binding.xjb</xjbSource>
+                    </xjbSources>
+                    <sources>
+                        <source>schemas/iwxxm.xsd</source>
+                    </sources>
+
+                    <args>
+                      <arg>-extension</arg>
+                      <arg>-Xnamespace-prefix</arg>
+                    </args>
+
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting>
+     <plugins>
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-javadoc-plugin</artifactId>
+         <version>3.0.0</version>
+         <configuration>
+
+         </configuration>
+        </plugin>
+     </plugins>
+    </reporting>
+
+</project>
